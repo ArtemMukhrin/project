@@ -42,4 +42,4 @@
 
   - name: Copy Remote-To-Remote (from deploy to prod)
     synchronize: src=/home/ubuntu/boxfuse/target/hello-1.0.war dest=/var/lib/tomcat9/webapps
-    delegate_to: deploy
+    delegate_to: 3.134.115.148
