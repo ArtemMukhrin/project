@@ -1,15 +1,5 @@
 ---
 
-- name: init prod service
-  hosts: prod
-  become: yes
-
-  tasks:
-    - name: Ensure tomcat package is present
-      apt:
-        name: tomcat9
-        state: present
-
 - name: init deploy service
   hosts: deploy
   become: yes
@@ -38,5 +28,16 @@
   - name: Ensure project is packaged
       command: mvn -f /home/ubuntu/boxfuse/pom.xml package
 
+- name: init prod service
+  hosts: prod
+  become: yes
 
-  RUN mvn -f boxfuse-sample-java-war-hello/pom.xml  package
+  tasks:
+    - name: Ensure tomcat package is present
+      apt:
+        name: tomcat9
+        state: present
+
+    - name: Copy Remote-To-Remote (from deploy to prod)
+        synchronize: src=/home/ubuntu/boxfuse/target/hello-1.0.war dest=/var/lib/tomcat9/webapps
+        delegate_to: deploy
