@@ -26,7 +26,7 @@
       dest: /home/ubuntu/boxfuse
 
   - name: Ensure project is packaged
-      command: mvn -f /home/ubuntu/boxfuse/pom.xml package
+    command: mvn -f /home/ubuntu/boxfuse/pom.xml package
 
 - name: init prod service
   hosts: prod
