@@ -1,0 +1,22 @@
+---
+- name: init deploy service
+  hosts: deploy
+  become: yes
+
+  tasks:
+  - name: Ensure git package is present
+    apt:
+      name: git
+      state: present
+
+  - name: Ensure jdk package is present
+      apt:
+        name: openjdk-8-jdk
+        state: present
+
+  - name: Ensure maven package is present
+      apt:
+        name: maven
+        state: present
+
+---
