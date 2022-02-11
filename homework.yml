@@ -21,9 +21,11 @@
       state: present
 
   - name: Ensure java project is present
-    ansible.builtin.git:
+    git:
       repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello
       dest: /home/ubuntu/boxfuse
+      clone: yes
+      update: yes
 
   - name: Ensure project is packaged
     command: mvn -f /home/ubuntu/boxfuse/pom.xml package
